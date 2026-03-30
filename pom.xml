@@ -234,6 +234,7 @@
 		<module>mcp/mcp-annotations</module>
 		<module>mcp/transport/mcp-spring-webflux</module>
 		<module>mcp/transport/mcp-spring-webmvc</module>
+		<module>strands/spring-ai-strands-hooks</module>
 	</modules>
 
 	<organization>
