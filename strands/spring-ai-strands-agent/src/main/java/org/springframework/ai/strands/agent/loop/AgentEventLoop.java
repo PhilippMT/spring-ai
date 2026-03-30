@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.jspecify.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -86,6 +85,7 @@ public class AgentEventLoop {
 	 * @throws MaxIterationsExceededException if the maximum number of iterations is
 	 * exceeded
 	 */
+	@SuppressWarnings("NullAway")
 	public EventLoopResult execute(ChatModel model, AgentState state, AgentOptions options, List<ToolCallback> tools,
 			ToolCallingManager toolCallingManager, HookRegistry hookRegistry, String agentId,
 			Map<String, Object> invocationState) {
@@ -123,7 +123,8 @@ public class AgentEventLoop {
 
 			Generation generation = response.getResult();
 			AssistantMessage assistantMessage = generation.getOutput();
-			@Nullable String stopReason = (generation.getMetadata() != null) ? generation.getMetadata().getFinishReason() : null;
+			String stopReason = (generation.getMetadata() != null && generation.getMetadata().getFinishReason() != null)
+					? generation.getMetadata().getFinishReason() : "end_turn";
 
 			AfterModelCallEvent afterModelEvent = hookRegistry
 				.invokeCallbacks(new AfterModelCallEvent(agentId, invocationState, stopReason, assistantMessage, null));
