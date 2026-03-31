@@ -238,6 +238,7 @@
 		<module>strands/spring-ai-strands-agent</module>
 		<module>strands/spring-ai-strands-plugins</module>
 		<module>strands/spring-ai-strands-multiagent</module>
+		<module>strands/spring-ai-strands-telemetry</module>
 	</modules>
 
 	<organization>
