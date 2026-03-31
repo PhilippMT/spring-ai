@@ -236,6 +236,7 @@
 		<module>mcp/transport/mcp-spring-webmvc</module>
 		<module>strands/spring-ai-strands-hooks</module>
 		<module>strands/spring-ai-strands-agent</module>
+		<module>strands/spring-ai-strands-plugins</module>
 		<module>strands/spring-ai-strands-multiagent</module>
 	</modules>
 

@@ -34,6 +34,7 @@ import org.springframework.ai.strands.agent.conversation.ConversationManager;
 import org.springframework.ai.strands.agent.loop.AgentEventLoop;
 import org.springframework.ai.strands.agent.loop.EventLoopResult;
 import org.springframework.ai.strands.agent.session.SessionManager;
+import org.springframework.ai.strands.agent.tool.AgentAsTool;
 import org.springframework.ai.strands.hooks.HookRegistry;
 import org.springframework.ai.strands.hooks.events.AfterInvocationEvent;
 import org.springframework.ai.strands.hooks.events.AgentInitializedEvent;
@@ -180,6 +181,18 @@ public class Agent {
 	 */
 	public HookRegistry getHookRegistry() {
 		return this.hookRegistry;
+	}
+
+	/**
+	 * Wrap this agent as a {@link ToolCallback} so it can be used as a tool by another
+	 * agent.
+	 * @param toolName the name for the tool, must not be {@code null} or empty
+	 * @param description a description of what this agent-tool does, must not be
+	 * {@code null} or empty
+	 * @return a {@link ToolCallback} that delegates to this agent
+	 */
+	public ToolCallback asTool(String toolName, String description) {
+		return new AgentAsTool(this, toolName, description);
 	}
 
 }
